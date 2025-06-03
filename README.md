@@ -41,6 +41,17 @@ Launch the mapping node:
 ```bash
 ros2 launch rosbot_mapping slam.launch.py
 ```
+Save the map :
+
+```bash
+ros2 service call /map_saver_server/save_map nav2_msgs/srv/SaveMap "{
+  map_url: './maps/my_map',
+  image_format: 'pgm',
+  map_mode: 'trinary',
+  free_thresh: 0.196,
+  occupied_thresh: 0.65
+}"
+```
 
 ## License
 
