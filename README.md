@@ -36,13 +36,16 @@ source install/setup.bash
 
 ## Usage
 
-Launch the mapping node:
-
+Launch the mapping node(it will also automatically launch rviz) :
 ```bash
 ros2 launch rosbot_mapping slam.launch.py
 ```
+Create a maps folder in your workspace :
+```bash
+cd rosbot_ws
+mkdir maps -p
+```
 Save the map :
-
 ```bash
 ros2 service call /map_saver_server/save_map nav2_msgs/srv/SaveMap "{
   map_url: './maps/my_map',
