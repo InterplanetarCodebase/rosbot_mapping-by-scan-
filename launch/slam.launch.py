@@ -30,13 +30,15 @@ def generate_launch_description():
         name="slam_toolbox",
         namespace="",
         output="screen",
+        arguments=['--ros-args', '--log-level', 'debug'],  # Add debug logging
         parameters=[
             LaunchConfiguration("slam_config"),
             {
                 "use_sim_time": LaunchConfiguration("use_sim_time"),
-                "base_frame": "base_link",  # Must match your config!
+                "base_frame": "base_link",
                 "map_frame": "map",
-                "odom_frame": "odom"
+                "odom_frame": "odom",
+                "debug_logging": True  # Enable internal debug logging
             }
         ]
     )
@@ -52,7 +54,8 @@ def generate_launch_description():
             {'save_map_timeout': 5.0},
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
             {'free_thresh_default': 0.196},
-            {'occupied_thresh_default': 0.65}
+            {'occupied_thresh_default': 0.65},
+            {'save_map_on_exit': True}  # Add this parameter
         ]
     )
 
