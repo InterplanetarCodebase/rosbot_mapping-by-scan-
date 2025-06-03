@@ -72,11 +72,24 @@ def generate_launch_description():
             {'use_sim_time': LaunchConfiguration('use_sim_time')}
         ]
     )
-
+    rviz_config_path = os.path.join(
+        get_package_share_directory("rosbot_mapping"),
+        "rviz",
+        "mapping.rviz"
+    )
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', rviz_config_path],
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}]
+    )
     return LaunchDescription([
         use_sim_time_arg,
         slam_config_arg,
         slam_toolbox,
         map_saver_server,
         lifecycle_manager,
+        rviz_node,
     ])
